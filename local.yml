@@ -4,6 +4,15 @@
   become: true
 
   tasks:
-  - name: install htop
+  - name: install packages
     package:
-      name: htop
+      name: 
+        - htop
+        - vim
+        - git
+        - fzf
+        - bat
+  - name: Install zsh
+    apt: name=zsh
+  - name: Change shell
+    shell: chsh -s `which zsh`
