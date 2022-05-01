@@ -12,7 +12,19 @@
         - git
         - fzf
         - bat
-  - name: Install zsh
-    apt: name=zsh
-  - name: Change shell
-    shell: chsh -s $(which zsh)
+          #ln -s $(which fdfind) ~/.local/bin/fd          
+        - fd-find
+
+  - name: copy wallpaper file 
+    copy:
+      src: files/wallpaper.png 
+      dest: /usr/share/backgrounds/ansible-wallpaper.png 
+      owner: root
+      group: root
+
+  - name: set wallpaper 
+    dconf:
+      key: files/wallpaper.png 
+      value: /usr/share/backgrounds/ansible-wallpaper.png 
+      owner: root
+      group: root
