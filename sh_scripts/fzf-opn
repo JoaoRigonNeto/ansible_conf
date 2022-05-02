@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-directory=$(fdfind . -t f | fzf --preview 'bat --style=numbers --color=always --line-range :500 {}')
+directory=$(fdfind . -t f | fzf --preview 'batcat --style=numbers --color=always --line-range :500 {}')
 
 if ! [ -z "$directory" ]
 then

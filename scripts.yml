@@ -1,0 +1,43 @@
+---
+- hosts: localhost
+  connection: local
+
+  tasks:
+  - name: install packages
+    package:
+      name: 
+        - fzf
+        - bat
+          #ln -s $(which fdfind) ~/.local/bin/fd          
+        - fd-find
+
+  - name: Create a directory if it does not exist
+    file:
+      path: /.shell_scripts
+      state: directory
+      mode: '0755'
+
+  - name: Copy fzf-nav
+    copy: src=sh_scripts/fzf-nav dest=/.shell_scripts/fzf-nav
+
+  - name: Copy fzf-opn
+    copy: src=sh_scripts/fzf-opn dest=/.shell_scripts/fzf-opn
+
+  - name: Changing perm of fzf-nav, adding "+x"
+    file:
+      dest: /.shell_scripts/fzf-nav
+      mode: a+x
+  - name: Changing perm of fzf-opn, adding "+x"
+    file:
+      dest: /.shell_scripts/fzf-opn
+      mode: a+x
+  - name: Creating symlink for fzf-nav
+    file:
+      src: /.shell_scripts/fzf-nav
+      dest: /usr/bin/fzf-nav
+      state: link
+  - name: Creating symlink for fzf-opn
+    file:
+      src: /.shell_scripts/fzf-opn
+      dest: /usr/bin/fzf-opn
+      state: link

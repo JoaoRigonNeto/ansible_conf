@@ -2,7 +2,7 @@
 
 if [ $# -eq 1 ]
 then
-directory=$(find ~ ~/prog -mindepth 1 -maxdepth 1 -type d | fzf)
+directory=$(find ~ -mindepth 1 -maxdepth 1 -type d | fzf)
 else
 directory=$(find ~ ~/prog -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
